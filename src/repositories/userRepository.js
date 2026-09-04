@@ -1,0 +1,35 @@
+import pool from "../configs/database.js";
+
+
+const userRepository = {
+    selecinar: async () => {
+        const sql = 'SELECT * FROM users;';
+        const [rows] = await pool.execute(sql);
+        return rows;
+    },
+    selecionarPorId: async (userId) => {
+        const sql = 'SELECT * FROM users WHERE id = ?;';
+        const [rows] = await pool.execute(sql, [userId]);
+        return rows;
+    },
+    deletar: async (userId) => {
+        const sql = 'SELECT * FROM users WHERE id = ?;';
+        const [rows] = await pool.execute(sql, [userId]);
+        return rows;
+    },
+
+    criar: async (name, email, password) => {
+        const sql = 'INSERT INTO users VALUES (null, ?, ?, ?);';
+        const [rows] = await pool.execute(sql, [name, email, password]);
+        return rows;
+    },
+
+    atualizar: async (name, email, password, userId) => {
+        const sql = 'UPDATE users SET name = ?, email = ?, password = ? WHERE id =?;';
+        const [rows] = await pool.execute(sql, [name, email, password, userId]);
+        return rows;
+    },
+        
+}
+
+export default userRepository;
