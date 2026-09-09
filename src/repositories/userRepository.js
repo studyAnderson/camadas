@@ -2,7 +2,7 @@ import pool from "../configs/database.js";
 
 
 const userRepository = {
-    selecinar: async () => {
+    selecionar: async () => {
         const sql = 'SELECT * FROM users;';
         const [rows] = await pool.execute(sql);
         return rows;
