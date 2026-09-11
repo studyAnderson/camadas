@@ -7,20 +7,25 @@ const userRepository = {
         const [rows] = await pool.execute(sql);
         return rows;
     },
+    selecionarPorEmail: async (email) => {
+        const sql = 'SELECT * FROM users WHERE email = ?;';
+        const [rows] = await pool.execute(sql, [email]);
+        return rows;
+    },
     selecionarPorId: async (userId) => {
         const sql = 'SELECT * FROM users WHERE id = ?;';
         const [rows] = await pool.execute(sql, [userId]);
         return rows;
     },
     deletar: async (userId) => {
-        const sql = 'SELECT * FROM users WHERE id = ?;';
+        const sql = 'DELETE FROM users WHERE id = ?;';
         const [rows] = await pool.execute(sql, [userId]);
         return rows;
     },
 
-    criar: async (name, email, password) => {
-        const sql = 'INSERT INTO users VALUES (null, ?, ?, ?);';
-        const [rows] = await pool.execute(sql, [name, email, password]);
+    criar: async (name, email, password, role) => {
+        const sql = 'INSERT INTO users VALUES (null, ?, ?, ?, ?);';
+        const [rows] = await pool.execute(sql, [name, email, password, role]);
         return rows;
     },
 

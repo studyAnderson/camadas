@@ -26,9 +26,11 @@ const userController = {
     criar: async (req, res) => {
         try {
 
-            const {name, email, password } = req.body;
+            const {name, email, password, role } = req.body;
 
-            const user = new User(name, email, password, null);
+            const hashedPassword = await userService.hashPassword(password);
+
+            const user = new User(name, email, hashedPassword, role, null);
 
             const resultado = await userService.criarUsuario(user);
 

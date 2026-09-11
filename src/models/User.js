@@ -3,11 +3,13 @@ class User {
     #name;
     #email;
     #password;
+    #role;
 
-    constructor(name, email, password, id = null){
+    constructor(name, email, password, role, id = null){
         this.#name = name;
         this.#email = email;
         this.#password = password;
+        this.#role = role;
         this.#id = id;
     }
     //id
@@ -40,6 +42,14 @@ class User {
 
     set password(value){
         this.#password = value;
+    }
+
+    //role
+    get role(){
+        return this.#role;
+    }
+    set role(value){
+        this.#role =value;
     }
 }
 
